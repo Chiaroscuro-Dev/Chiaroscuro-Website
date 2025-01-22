@@ -8,3 +8,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         });
     });
 });
+
+// Parallax scrolling effect
+window.addEventListener('scroll', function() {
+    const parallax = document.querySelector('.parallax-section');
+    let scrollPosition = window.pageYOffset;
+    parallax.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+});
