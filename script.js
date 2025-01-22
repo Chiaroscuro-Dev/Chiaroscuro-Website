@@ -6,12 +6,11 @@ const commandInput = document.getElementById("command-input");
 const commands = {
     home: "Welcome to Chiaroscuro Dev. Type 'help' to see available commands.",
     help: "Available commands: \n - home: Returns to the home screen\n - help: Displays available commands\n - projects: Displays our projects\n - discord: Links to our Discord server\n - devs: Shows developer profiles\n",
-    projects: "Current projects: \n 1. Project One - React app with real-time data sync\n 2. Project Two - Flutter mobile app\n 3. Project Three - Data visualization dashboard with D3.js.",
+    projects: "Current projects: Nothing Yet...",
     discord: "Join our Discord server here: https://discord.gg/example",
     devs: {
         description: "Use 'devs [name]' to view individual developer profiles. Available devs: jane, john.",
-        jane: "Jane Doe: Lead Developer specializing in front-end and UX design. Skills: React, JavaScript, CSS.",
-        john: "John Smith: Full Stack Developer specializing in Node.js and cloud architecture. Skills: Node.js, AWS, Python."
+        zig wangles: "zig wangles: Lead Developer specializing in front-end web dev and python. Skills: HTML, Python, JavaScript, CSS.",
     }
 };
 
@@ -56,10 +55,8 @@ function handleDevsCommand(command) {
 
     if (devArgs.length === 1) {
         displayOutput(commands.devs.description);
-    } else if (devArgs[1] === "jane") {
-        displayOutput(commands.devs.jane);
-    } else if (devArgs[1] === "john") {
-        displayOutput(commands.devs.john);
+    } else if (devArgs[1] === "zig wangles") {
+        displayOutput(commands.devs.zig wangles);
     } else {
         displayOutput(`Unknown developer: ${devArgs[1]}`);
     }
