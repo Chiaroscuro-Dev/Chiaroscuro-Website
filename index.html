@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chiaroscuro Dev</title>
+    <title>Chiaroscuro Dev Website</title>
     <style>
         * {
             margin: 0;
@@ -83,11 +83,50 @@
         let commandHistory = [];
         let currentPath = '~';
 
+        const projectCategories = {
+            web: {
+                name: 'Web Development',
+                projects: {
+                    chiaroscuro: {
+                        name: 'Chiaroscuro Dev Website',
+                        description: 'Interactive command-line interface website for the Chiaroscuro Dev team.',
+                        status: 'Complete',
+                        tech: ['HTML', 'CSS'],
+                        completion: '100%'
+                    },
+                    ecommerce: {
+                        name: 'E-commerce Platform',
+                        description: 'Full-stack online shopping platform',
+                        status: 'Planning',
+                        tech: ['React', 'Node.js', 'MongoDB'],
+                        completion: '20%'
+                    }
+                }
+            },
+            mobile: {
+                name: 'Mobile Development',
+                projects: {
+                }
+            },
+            ai: {
+                name: 'AI/ML Projects',
+                projects: {
+                    zero: {
+                        name: 'Zero AI',
+                        description: 'Fully free ai chatbot for all your daily needs.',
+                        status: 'Inactive',
+                        tech: ['Python', 'TensorFlow', 'Flask', 'HTML', 'CSS'],
+                        completion: '45%'
+                    },
+                }
+            }
+        };
+
         const commands = {
             home: {
                 description: 'Return to home page',
                 execute: () => {
-                    return 'Welcome to the Developer Command Prompt!\nType "help" to see available commands.';
+                    return 'Welcome to the Chiaroscuro Dev!\nType "help" to see available commands.';
                 }
             },
             help: {
@@ -99,23 +138,51 @@
                 }
             },
             projects: {
-                description: 'List developer projects',
-                execute: () => {
-                    return `Current Projects:
-1. Chiaroscuro Dev Website`;
+                description: 'List projects (Usage: projects [category] [project-name])',
+                execute: (args) => {
+                    if (!args.length) {
+                        // Show categories
+                        return `Project Categories:\n${Object.entries(projectCategories)
+                            .map(([key, cat]) => `${key}: ${cat.name}`)
+                            .join('\n')}\n\nUse "projects <category>" to view projects in a category.`;
+                    }
+
+                    const category = projectCategories[args[0]];
+                    if (!category) {
+                        return `Category not found. Available categories: ${Object.keys(projectCategories).join(', ')}`;
+                    }
+
+                    if (args.length === 1) {
+                        // Show projects in category
+                        return `${category.name} Projects:\n${Object.entries(category.projects)
+                            .map(([key, proj]) => `${key}: ${proj.name} (${proj.status} - ${proj.completion})`)
+                            .join('\n')}\n\nUse "projects ${args[0]} <project-name>" for details.`;
+                    }
+
+                    const project = category.projects[args[1]];
+                    if (!project) {
+                        return `Project not found in ${category.name}. Available projects: ${Object.keys(category.projects).join(', ')}`;
+                    }
+
+                    // Show detailed project info
+                    return `Project: ${project.name}
+Description: ${project.description}
+Status: ${project.status}
+Technologies: ${project.tech.join(', ')}
+Completion: ${project.completion}`;
                 }
             },
             discord: {
                 description: 'Get Discord server link',
                 execute: () => {
-                    return 'Join our Discord server: https://discord.gg/devteam';
+                    return 'Join our Discord server: https://discord.gg/Qc2mVdNqHP';
                 }
             },
             devs: {
                 description: 'View developer profiles',
                 execute: (args) => {
                     const profiles = {
-                        zigwangles: 'zig wangles - Lead Developer\nExpertise: Full-stack development\nYears of experience: 1 1/2',
+                        zigwangles: 'zig wangles - Lead Developer\nExpertise: Full-stack development and Python Dev\nDiscord Username: zig.wangles',
                     };
 
                     if (!args.length) {
