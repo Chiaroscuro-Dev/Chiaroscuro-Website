@@ -70,9 +70,10 @@ main section {
 }
 
 /* Profile Grid */
-.profile-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+.profile-grid.centered {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 2rem;
     padding: 2rem;
 }
@@ -82,6 +83,7 @@ main section {
     padding: 1.5rem;
     border-radius: 10px;
     text-align: center;
+    width: 300px;
 }
 
 .profile-card img {
@@ -102,6 +104,21 @@ main section {
 
 .profile-links a:hover {
     color: #ddd;
+}
+
+/* Skill Tags */
+.skills {
+    margin-top: 1rem;
+}
+
+.skill-tag {
+    background-color: #555;
+    color: #fff;
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;
+    margin: 0 0.3rem 0.5rem 0;
+    display: inline-block;
+    font-size: 0.9rem;
 }
 
 /* Contact Section */
@@ -130,7 +147,11 @@ footer {
         margin: 0.5rem 0;
     }
 
-    .project-grid, .profile-grid {
+    .project-grid {
         grid-template-columns: 1fr;
+    }
+
+    .profile-grid.centered {
+        flex-direction: column;
     }
 }
