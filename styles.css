@@ -27,6 +27,8 @@ body {
     border-radius: 10px;
     padding: 20px;
     overflow-y: auto;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    border: 1px solid #0f0;
 }
 
 /* Output area */
@@ -44,7 +46,6 @@ body {
     bottom: 20px;
     width: 90vw;
     background-color: #111;
-    padding-top: 10px;
 }
 
 .prompt {
@@ -59,4 +60,44 @@ body {
     flex-grow: 1;
     font-family: inherit;
     font-size: inherit;
+}
+
+/* Blinking cursor effect */
+#command-input:focus {
+    border-right: 2px solid #0f0;
+    animation: blink-cursor 1s step-end infinite;
+}
+
+@keyframes blink-cursor {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* Terminal scrollbar */
+#terminal::-webkit-scrollbar {
+    width: 8px;
+}
+
+#terminal::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    #terminal {
+        width: 100vw;
+        height: 100vh;
+        padding: 10px;
+    }
+
+    #input-line {
+        width: 100vw;
+        bottom: 10px;
+    }
+
+    #command-input {
+        font-size: 14px;
+    }
 }
