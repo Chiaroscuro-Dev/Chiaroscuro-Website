@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Command Prompt</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+
+        body {
+            background-color: black;
+            color: #00ff00;
+            padding: 20px;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #terminal {
+            height: calc(100vh - 40px);
+            overflow-y: auto;
+        }
+
+        .command-line {
+            margin-bottom: 10px;
+        }
+
+        .prompt {
+            color: #0088ff;
+        }
+
+        .prompt-symbol {
+            color: white;
+            margin: 0 8px;
+        }
+
+        #input-line {
+            display: flex;
+            align-items: center;
+        }
+
+        #cmd-input {
+            background: transparent;
+            border: none;
+            color: #00ff00;
+            font-size: inherit;
+            font-family: inherit;
+            flex-grow: 1;
+            outline: none;
+        }
+
+        .output {
+            white-space: pre-line;
+            margin-top: 5px;
+        }
+
+        .cursor {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div id="terminal"></div>
+    <div id="input-line">
+        <span class="prompt">~</span>
+        <span class="prompt-symbol">$</span>
+        <input type="text" id="cmd-input" autofocus>
+    </div>
+
+    <script>
+        const terminal = document.getElementById('terminal');
+        const input = document.getElementById('cmd-input');
+        let commandHistory = [];
+        let currentPath = '~';
+
+        const commands = {
+            home: {
+                description: 'Return to home page',
+                execute: () => {
+                    return 'Welcome to the Developer Command Prompt!\nType "help" to see available commands.';
+                }
+            },
+            help: {
+                description: 'Show available commands',
+                execute: () => {
+                    return Object.entries(commands)
+                        .map(([cmd, info]) => `${cmd}: ${info.description}`)
+                        .join('\n');
+                }
+            },
+            projects: {
+                description: 'List developer projects',
+                execute: () => {
+                    return `Current Projects:
+1. Command Prompt Website
+2. E-commerce Platform
+3. Mobile Game Development
+4. AI Chat Application`;
+                }
+            },
+            discord: {
+                description: 'Get Discord server link',
+                execute: () => {
+                    return 'Join our Discord server: https://discord.gg/devteam';
+                }
+            },
+            devs: {
+                description: 'View developer profiles',
+                execute: (args) => {
+                    const profiles = {
+                        john: 'John Doe - Lead Developer\nExpertise: Full-stack development\nYears of experience: 8',
+                        jane: 'Jane Smith - UI/UX Designer\nExpertise: Frontend development\nYears of experience: 5',
+                        mike: 'Mike Johnson - Backend Developer\nExpertise: System architecture\nYears of experience: 6'
+                    };
+
+                    if (!args.length) {
+                        return 'Available profiles: ' + Object.keys(profiles).join(', ') + '\nUse "devs <name>" to view specific profile';
+                    }
+
+                    const profile = profiles[args[0].toLowerCase()];
+                    return profile || 'Profile not found. Use "devs" to see available profiles.';
+                }
+            },
+            clear: {
+                description: 'Clear the terminal',
+                execute: () => {
+                    terminal.innerHTML = '';
+                    return '';
+                }
+            }
+        };
+
+        function handleCommand(cmd) {
+            const args = cmd.trim().split(' ');
+            const command = args[0].toLowerCase();
+            const commandArgs = args.slice(1);
+
+            if (command === '') return;
+
+            // Add command to terminal
+            const commandDiv = document.createElement('div');
+            commandDiv.className = 'command-line';
+            commandDiv.innerHTML = `<span class="prompt">${currentPath}</span><span class="prompt-symbol">$</span> ${cmd}`;
+            terminal.appendChild(commandDiv);
+
+            // Execute command and show output
+            let output = '';
+            if (commands[command]) {
+                output = commands[command].execute(commandArgs);
+            } else {
+                output = `Command not found: ${command}. Type "help" for available commands.`;
+            }
+
+            if (output) {
+                const outputDiv = document.createElement('div');
+                outputDiv.className = 'output';
+                outputDiv.textContent = output;
+                terminal.appendChild(outputDiv);
+            }
+
+            // Scroll to bottom
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const cmd = input.value;
+                handleCommand(cmd);
+                input.value = '';
+            }
+        });
+
+        // Keep focus on input
+        document.addEventListener('click', () => {
+            input.focus();
+        });
+
+        // Initial welcome message
+        handleCommand('home');
+    </script>
+</body>
+</html>
