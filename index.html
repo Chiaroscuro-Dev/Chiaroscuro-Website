@@ -3,54 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chiaroscuro Dev</title>
+    <title>Chiaroscuro Dev Hub Interface</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Chiaroscuro Dev</h1>
-        <nav>
-            <ul>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#profiles">Team</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div id="terminal">
+        <div id="output"></div>
+        <div id="input-line">
+            <span class="prompt">chiaroscuro-dev $</span>
+            <input type="text" id="command-input" autofocus>
+        </div>
+    </div>
 
-    <main>
-        <!-- Projects Section -->
-        <section id="projects">
-            <h2>Our Projects</h2>
-            <div class="project-grid">
-                <div class="project">
-                    <img src="IMG_1229.jpeg"
-                    <h3>Chiaroscuro Dev Discord Server</h3>
-                    <p>The official discord server for the Chiaroscuro Dev team.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Team Profile Section -->
-        <section id="profiles">
-            <h2>Meet the Team</h2>
-            <div class="profile-grid centered">
-                <!-- Profile Template -->
-                <div class="profile-card">
-                    <img src="IMG_1153.jpeg"
-                    <h3>zig wangles</h3>
-                    <p>Lead Developer - Specializes in front-end and python.</p>
-                    <div class="skills">
-                        <span class="skill-tag">HTML</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">CSS</span>
-                        <span class="skill-tag">Python</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    <footer>
-        <p>&copy; 2025 Chiaroscuro Dev. All rights reserved.</p>
-    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
