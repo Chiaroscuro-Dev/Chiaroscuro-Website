@@ -90,6 +90,20 @@ main section {
     margin-bottom: 1rem;
 }
 
+.profile-links {
+    margin-top: 1rem;
+}
+
+.profile-links a {
+    color: #fff;
+    margin-right: 0.5rem;
+    text-decoration: none;
+}
+
+.profile-links a:hover {
+    color: #ddd;
+}
+
 /* Contact Section */
 #contact a {
     color: #222;
