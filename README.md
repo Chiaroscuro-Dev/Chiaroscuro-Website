@@ -5,9 +5,8 @@ Welcome to the **Chiaroscuro Dev Command Interface**, a terminal-style profile w
 ## Table of Contents
 
 - [Features](#features)
-- [Live Demo](#live-demo)
+- [Live Site](#live-site)
 - [Commands](#commands)
-- [Usage](#usage)
 - [Contact Us](#contact-us)
 - [License](#license)
 
@@ -18,11 +17,9 @@ Welcome to the **Chiaroscuro Dev Command Interface**, a terminal-style profile w
 - Minimalistic, terminal-style UI with green-on-black text and a blinking cursor for an authentic developer experience.
 - Mobile-responsive, so you can explore the site seamlessly on any device.
 
-## Live Demo
+## Live Site
 
 Explore the Chiaroscuro Dev Command Interface at: **[zigwangles.xyz](https://zigwangles.xyz)**
-
-![Chiaroscuro Dev Command Interface Screenshot](https://via.placeholder.com/1000x600)
 
 ## Commands
 
@@ -33,33 +30,13 @@ The following commands are available on the site:
 - **projects**: Shows a list of projects by the Chiaroscuro Dev team.
 - **discord**: Provides a link to the team's Discord server.
 - **devs**: Shows available developers. Use `devs [name]` to see specific developer profiles.
-  - **devs jane**: View Jane Doe's profile.
-  - **devs john**: View John Smith's profile.
+  - **zig wangles**: View zig wangles profile.
 
-## Usage
-
-When visiting the website, simply type the commands in the input field at the bottom of the page, just like you would in a real terminal.
-
-For example:
-- To view the team's projects, type:
-  ```bash
-  projects
-
-	•	To view a developer’s profile, such as Jane Doe:
-
-devs jane
-
-
-
-The help command is available to remind you of all the options:
-
-help
-
-Contact Us
+## Contact Us
 
 To get in touch with the Chiaroscuro Dev team or learn more about what we do, feel free to reach out through the contact information or Discord link provided on the website.
 
-License
+## License
 
 This project is licensed under the MIT License.
 
