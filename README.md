@@ -41,7 +41,3 @@ To get in touch with the Chiaroscuro Dev team or learn more about what we do, fe
 This project is licensed under the MIT License.
 
 ---
-
-**History**: Updated the README to reflect the fact that it's a profile website for the Chiaroscuro Dev team, including details on usage and commands without local setup or contribution information.
-
-**Next Task**: Keep the README updated as you add more commands or sections, and consider adding additional screenshots or demo videos.
