@@ -40,23 +40,29 @@
         </div>
     </section>
 
-    <script>
-       function toggleMenu() {
-            const menu = document.getElementById('dropdownMenu');
-            menu.classList.toggle('show');
-        }
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('dropdownMenu');
+        menu.classList.toggle('show');
+    }
 
-        window.onclick = function(event) {
-            if (!event.target.matches('.menu-btn')) {
-                const dropdowns = document.getElementsByClassName("dropdown-content");
-                for (let i = 0; i < dropdowns.length; i++) {
-                    const openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
+    // Close menu when clicking outside or on mobile close button
+    document.addEventListener('click', function(event) {
+        const menu = document.getElementById('dropdownMenu');
+        const menuBtn = document.querySelector('.menu-btn');
+        
+        if (!event.target.closest('.menu-dropdown') && !event.target.matches('.menu-btn')) {
+            menu.classList.remove('show');
         }
-    </script>
+    });
+
+    // Touch support for mobile
+    document.addEventListener('touchstart', function(event) {
+        const menu = document.getElementById('dropdownMenu');
+        if (!event.target.closest('.menu-dropdown') && !event.target.matches('.menu-btn')) {
+            menu.classList.remove('show');
+        }
+    });
+</script>
 </body>
 </html>
