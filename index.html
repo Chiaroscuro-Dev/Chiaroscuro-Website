@@ -3,245 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chiaroscuro Dev Website</title>
+    <title>Zigwangles | Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Add common styles from previous response */
+        :root {
+            --primary: #6495ed;
+            --dark: #1a1a1a;
+            --light: #ffffff;
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Courier New', monospace;
+            font-family: 'Inter', sans-serif;
         }
 
-        body {
-            background-color: black;
-            color: #00ff00;
-            padding: 20px;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        #terminal {
-            height: calc(100vh - 40px);
-            overflow-y: auto;
-        }
-
-        .command-line {
-            margin-bottom: 10px;
-        }
-
-        .prompt {
-            color: #0088ff;
-        }
-
-        .prompt-symbol {
-            color: white;
-            margin: 0 8px;
-        }
-
-        #input-line {
+        /* Add all common styles from previous response here */
+        
+        /* Home specific styles */
+        .hero-section {
+            min-height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(45deg, var(--light) 60%, var(--primary) 150%);
         }
 
-        #cmd-input {
-            background: transparent;
-            border: none;
-            color: #00ff00;
-            font-size: inherit;
-            font-family: inherit;
-            flex-grow: 1;
-            outline: none;
+        .hero-content {
+            max-width: 800px;
         }
 
-        .output {
-            white-space: pre-line;
-            margin-top: 5px;
-        }
-
-        .cursor {
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--dark), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
 <body>
-    <div id="terminal"></div>
-    <div id="input-line">
-        <span class="prompt">~</span>
-        <span class="prompt-symbol">$</span>
-        <input type="text" id="cmd-input" autofocus>
-    </div>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Creative Full Stack Developer</h1>
+            <p class="tagline">Building digital experiences that matter</p>
+            <div class="cta-buttons">
+                <a href="projects.html" class="cta-btn">View Work</a>
+                <a href="contact.html" class="cta-btn outline">Get in Touch</a>
+            </div>
+        </div>
+    </section>
 
     <script>
-        const terminal = document.getElementById('terminal');
-        const input = document.getElementById('cmd-input');
-        let commandHistory = [];
-        let currentPath = '~';
-
-        const projectCategories = {
-            web: {
-                name: 'Web Development',
-                projects: {
-                    chiaroscuro: {
-                        name: 'Chiaroscuro Dev Website',
-                        description: 'Interactive command-line interface website for the Chiaroscuro Dev team.',
-                        status: 'Complete',
-                        tech: ['HTML', 'CSS'],
-                        completion: '100%'
-                    },
-                }
-            },
-            mobile: {
-                name: 'Mobile Development',
-                projects: {
-                }
-            },
-            ai: {
-                name: 'AI/ML Projects',
-                projects: {
-                    zero: {
-                        name: 'Zero AI',
-                        description: 'Fully free ai chatbot for all your daily needs.',
-                        status: 'Active',
-                        tech: ['HTML', 'HTML', 'CSS'],
-                        completion: '100%',
-                    },
-                }
-            }
-        };
-
-        const commands = {
-            home: {
-                description: 'Return to home page',
-                execute: () => {
-                    return 'Welcome to the Chiaroscuro Dev!\nType "help" to see available commands.';
-                }
-            },
-            help: {
-                description: 'Show available commands',
-                execute: () => {
-                    return Object.entries(commands)
-                        .map(([cmd, info]) => `${cmd}: ${info.description}`)
-                        .join('\n');
-                }
-            },
-            projects: {
-                description: 'List projects (Usage: projects [category] [project-name])',
-                execute: (args) => {
-                    if (!args.length) {
-                        // Show categories
-                        return `Project Categories:\n${Object.entries(projectCategories)
-                            .map(([key, cat]) => `${key}: ${cat.name}`)
-                            .join('\n')}\n\nUse "projects <category>" to view projects in a category.`;
-                    }
-
-                    const category = projectCategories[args[0]];
-                    if (!category) {
-                        return `Category not found. Available categories: ${Object.keys(projectCategories).join(', ')}`;
-                    }
-
-                    if (args.length === 1) {
-                        // Show projects in category
-                        return `${category.name} Projects:\n${Object.entries(category.projects)
-                            .map(([key, proj]) => `${key}: ${proj.name} (${proj.status} - ${proj.completion})`)
-                            .join('\n')}\n\nUse "projects ${args[0]} <project-name>" for details.`;
-                    }
-
-                    const project = category.projects[args[1]];
-                    if (!project) {
-                        return `Project not found in ${category.name}. Available projects: ${Object.keys(category.projects).join(', ')}`;
-                    }
-
-                    // Show detailed project info
-                    return `Project: ${project.name}
-Description: ${project.description}
-Status: ${project.status}
-Technologies: ${project.tech.join(', ')}
-Completion: ${project.completion}`;
-                }
-            },
-            discord: {
-                description: 'Get Discord server link',
-                execute: () => {
-                    return 'Join our Discord server: https://discord.gg/Qc2mVdNqHP';
-                }
-            },
-            devs: {
-                description: 'View developer profiles',
-                execute: (args) => {
-                    const profiles = {
-                        zigwangles: 'zig wangles - Lead Developer\nExpertise: Full-stack development and Python Dev\nDiscord Username: zig.wangles',
-                    };
-
-                    if (!args.length) {
-                        return 'Available profiles: ' + Object.keys(profiles).join(', ') + '\nUse "devs <name>" to view specific profile';
-                    }
-
-                    const profile = profiles[args[0].toLowerCase()];
-                    return profile || 'Profile not found. Use "devs" to see available profiles.';
-                }
-            },
-            clear: {
-                description: 'Clear the terminal',
-                execute: () => {
-                    terminal.innerHTML = '';
-                    return '';
-                }
-            }
-        };
-
-        function handleCommand(cmd) {
-            const args = cmd.trim().split(' ');
-            const command = args[0].toLowerCase();
-            const commandArgs = args.slice(1);
-
-            if (command === '') return;
-
-            // Add command to terminal
-            const commandDiv = document.createElement('div');
-            commandDiv.className = 'command-line';
-            commandDiv.innerHTML = `<span class="prompt">${currentPath}</span><span class="prompt-symbol">$</span> ${cmd}`;
-            terminal.appendChild(commandDiv);
-
-            // Execute command and show output
-            let output = '';
-            if (commands[command]) {
-                output = commands[command].execute(commandArgs);
-            } else {
-                output = `Command not found: ${command}. Type "help" for available commands.`;
-            }
-
-            if (output) {
-                const outputDiv = document.createElement('div');
-                outputDiv.className = 'output';
-                outputDiv.textContent = output;
-                terminal.appendChild(outputDiv);
-            }
-
-            // Scroll to bottom
-            terminal.scrollTop = terminal.scrollHeight;
-        }
-
-        input.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                const cmd = input.value;
-                handleCommand(cmd);
-                input.value = '';
-            }
-        });
-
-        // Keep focus on input
-        document.addEventListener('click', () => {
-            input.focus();
-        });
-
-        // Initial welcome message
-        handleCommand('home');
+        // Common JavaScript from previous response
     </script>
 </body>
 </html>
