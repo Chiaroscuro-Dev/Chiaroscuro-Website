@@ -1,233 +1,86 @@
-/* 
-  Apple-inspired, minimalist style.
-  Adjust the color variables as desired.
-*/
-
-/* -----------------------------
-   COLOR & FONT VARIABLES
------------------------------ */
+/* Global Colors */
 :root {
-  --bg-color: #ffffff;           /* Main background color */
-  --text-color: #333333;         /* Primary text color */
-  --secondary-text-color: #555555;
-  --accent-color: #2980b9;       /* Main accent (blue) */
-  --accent-color-light: #ecf6fc; /* Light blue highlight */
-  --skill-bar-bg: #e0e0e0;       /* Skill bar background */
-  --skill-bar-fill: #2980b9;     /* Skill bar fill color */
-  --nav-height: 60px;            /* Navbar height */
-  --font-family: -apple-system, BlinkMacSystemFont, 
-                 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --bg-gradient: linear-gradient(135deg, #6dd5fa, #2980b9);
+    --primary-color: #6dd5fa;
+    --secondary-color: #2980b9;
 }
 
-/* -----------------------------
-   GLOBAL RESETS
------------------------------ */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  font-family: var(--font-family);
-  line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--bg-gradient);
+    color: white;
+    text-align: center;
 }
 
-/* Links */
-a {
-  color: var(--accent-color);
-  text-decoration: none;
-  transition: color 0.3s;
+/* Header and Navigation */
+header {
+    font-size: 1.5rem;
+    padding: 20px;
+    transition: transform 0.3s ease;
 }
-a:hover {
-  color: #1e6a91; /* slightly darker shade of accent */
-}
-
-/* -----------------------------
-   NAVIGATION
------------------------------ */
-.navbar {
-  position: sticky;
-  top: 0;
-  height: var(--nav-height);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 2rem;
-  background-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-  z-index: 999;
+header:hover {
+    transform: scale(1.1);
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: 600;
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+nav a:hover {
+    color: var(--primary-color);
 }
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1rem;
+/* Containers */
+.container {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
-.nav-links li a {
-  font-weight: 500;
-  padding: 0.5rem 0.75rem;
-  border-radius: 5px;
+/* Buttons */
+button {
+    background-color: var(--secondary-color);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s;
 }
-.nav-links li a:hover {
-  background-color: var(--accent-color-light);
-}
-
-/* -----------------------------
-   HERO SECTION
------------------------------ */
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(100vh - var(--nav-height));
-  background: linear-gradient(
-    to bottom right,
-    var(--accent-color-light),
-    #ffffff
-  );
-  text-align: center;
-  padding: 2rem;
+button:hover {
+    transform: scale(1.05);
 }
 
-.hero-content {
-  max-width: 600px;
-  margin: 0 auto;
-}
-.hero-content h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-.hero-content p {
-  color: var(--secondary-text-color);
-  margin-bottom: 2rem;
-  font-size: 1.1rem;
-}
-.cta-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
-.cta-buttons a {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  border: 2px solid var(--accent-color);
-  border-radius: 5px;
-  font-weight: 500;
-  transition: 0.3s;
-}
-.cta-buttons a:hover {
-  background-color: var(--accent-color);
-  color: #fff;
+/* Glow Effect */
+.glow {
+    text-shadow: 0 0 10px white;
 }
 
-/* -----------------------------
-   SKILLS SECTION
------------------------------ */
-.skills-section {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 3rem 1rem;
+/* Ripple Effect */
+.ripple {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
 }
-.skills-section h2 {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-.skill {
-  margin-bottom: 1.5rem;
-}
-.skill-label {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-}
-.skill-level {
-  color: var(--secondary-text-color);
-}
-.skill-bar {
-  background-color: var(--skill-bar-bg);
-  border-radius: 5px;
-  overflow: hidden;
-  height: 20px;
-}
-.skill-bar-fill {
-  background-color: var(--skill-bar-fill);
-  height: 100%;
-  width: 0%;
-  transition: width 1s ease-in-out;
-}
-
-/* -----------------------------
-   PROJECTS SECTION
------------------------------ */
-.projects-section {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 3rem 1rem;
-}
-.projects-section h2 {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-}
-.project-card {
-  background-color: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  text-align: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s;
-}
-.project-card:hover {
-  transform: translateY(-5px);
-}
-.project-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-.project-card h3 {
-  margin: 1rem 0;
-  font-size: 1.25rem;
-}
-.project-card p {
-  margin: 0 1rem 1rem;
-  color: var(--secondary-text-color);
-}
-.project-card a {
-  display: inline-block;
-  margin-bottom: 1rem;
-  padding: 0.5rem 1rem;
-  border: 2px solid var(--accent-color);
-  border-radius: 5px;
-  transition: 0.3s;
-  font-weight: 500;
-}
-.project-card a:hover {
-  background-color: var(--accent-color);
-  color: #fff;
-}
-
-/* -----------------------------
-   FOOTER
------------------------------ */
-footer {
-  text-align: center;
-  padding: 2rem;
-  color: var(--secondary-text-color);
-  font-size: 0.9rem;
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
 }
